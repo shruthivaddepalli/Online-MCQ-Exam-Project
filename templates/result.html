@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="result-container">
+        <h2>Exam Results</h2>
+
+        <div class="result-card">
+            {% if score is not none %}
+                <p class="result-info">Exam ID: <span>{{ exam_id }}</span></p>
+                <p class="result-info">Your Score: <span>{{ score }}</span></p>
+            {% else %}
+                <p class="result-info">No results found for Exam ID: <span>{{ exam_id }}</span></p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="exam-container">
+        <h2>Exam</h2>
+        <form method="POST" action="/submit_exam/1">
+            {% for question in questions %}
+            <div class="question-container">
+                <p>{{ question[2] }}</p>
+                <input type="radio" name="question_{{ question[0] }}" value="1" id="option1_{{ question[0] }}">
+                <label for="option1_{{ question[0] }}">{{ question[3] }}</label><br>
+                <input type="radio" name="question_{{ question[0] }}" value="2" id="option2_{{ question[0] }}">
+                <label for="option2_{{ question[0] }}">{{ question[4] }}</label><br>
+                <input type="radio" name="question_{{ question[0] }}" value="3" id="option3_{{ question[0] }}">
+                <label for="option3_{{ question[0] }}">{{ question[5] }}</label><br>
+                <input type="radio" name="question_{{ question[0] }}" value="4" id="option4_{{ question[0] }}">
+                <label for="option4_{{ question[0] }}">{{ question[6] }}</label><br>
+            </div>
+            {% endfor %}
+            <button type="submit">Submit Exam</button>
+        </form>
+    </div>
+</body>
+</html>
