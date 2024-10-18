@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, g
 import sqlite3
 
-
 app = Flask(__name__)
 app.secret_key = 'somesecretkey'
 
@@ -143,42 +142,6 @@ def exam(exam_id):
         return "No questions found for this exam."
 
     return render_template('exam.html', questions=questions)
-
-
-'''@app.route('/submit_exam/<int:exam_id>', methods=['POST'])
-def submit_exam(exam_id):
-    user_id = session['user_id']  # Get the logged-in user's ID from the session
-    db = get_db()
-    cursor = db.cursor()
-
-    # Fetch questions for the exam
-    cursor.execute('SELECT * FROM questions WHERE exam_id = ?', (exam_id,))
-    questions = cursor.fetchall()
-
-    # Initialize score
-    score = 0
-
-    # Check each question's answer
-    for question in questions:
-        selected_option = request.form.get(f'question_{question[0]}')  # Get user's selected answer
-        if selected_option and int(selected_option) == question[6]:  # Compare with correct answer
-            score += 1
-
-    # Check if the result already exists for this user and exam
-    cursor.execute('SELECT * FROM results WHERE user_id = ? AND exam_id = ?', (user_id, exam_id))
-    existing_result = cursor.fetchone()
-
-    if existing_result:
-        # If a result exists, update the score
-        cursor.execute('UPDATE results SET score = ? WHERE user_id = ? AND exam_id = ?', (score, user_id, exam_id))
-    else:
-        # If no result exists, insert a new score
-        cursor.execute('INSERT INTO results (user_id, exam_id, score) VALUES (?, ?, ?)', (user_id, exam_id, score))
-
-    db.commit()
-
-    # Redirect to the result page to display the score (with exam_id)
-    return redirect(f'/result/1')'''
 
 
 @app.route('/result/<int:exam_id>')
